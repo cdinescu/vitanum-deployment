@@ -7,7 +7,7 @@ GIT_URL="git@github.com:cdinescu"
 
 buildProject() {
   project_folder=$1
-  echo "\n Building: $project_fold.........................................\n"
+  echo -e "\n Building: $project_fold.........................................\n"
   cd ${project_folder}
   # Generate the build folder, which later are used by the projects' Dockerfile when creating the image
   gradle bootJar
@@ -30,7 +30,7 @@ git clone ${GIT_URL}/ask-oracle-service.git
 git clone ${GIT_URL}/central-config.git
 git clone ${GIT_URL}/nutrient-ranks.git
 
-echo "\n\n"
+echo -e  "\n\n"
 
 # Folder name array for the projects which need to be built (those with source code)
 declare -a services_to_build=(eureka-service config-server food-service gateway-service diary-service ask-oracle-service)
