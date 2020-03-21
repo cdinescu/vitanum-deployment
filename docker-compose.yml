@@ -1,9 +1,9 @@
 version: '2'
-services:
 
+services:
   naming-server:
     build:
-      context: eureka-service/
+      context: deployment/eureka-service/
       dockerfile: Dockerfile
     ports:
       - "8761:8761"
@@ -13,7 +13,7 @@ services:
 
   config-server:
     build:
-      context: config-server/
+      context: deployment/config-server/
       dockerfile: Dockerfile
     ports:
       - "8012:8012"
@@ -26,7 +26,7 @@ services:
 
   food-service:
     build:
-      context: food-service/
+      context: deployment/food-service/
       dockerfile: Dockerfile
     restart: always
     networks:
@@ -40,7 +40,7 @@ services:
 
   diary-service:
     build:
-      context: diary-service/
+      context: deployment/diary-service/
       dockerfile: Dockerfile
     restart: always
     networks:
@@ -77,7 +77,7 @@ services:
 
   gateway-service:
     build:
-      context: gateway-service/
+      context: deployment/gateway-service/
       dockerfile: Dockerfile
     ports:
       - "8082:8082"
@@ -94,7 +94,7 @@ services:
 
   ask-oracle-service:
     build:
-      context: ask-oracle-service/
+      context: deployment/ask-oracle-service/
       dockerfile: Dockerfile
     restart: always
     networks:
@@ -115,7 +115,7 @@ services:
 
   mongo-database:
     build:
-      context: nutrient-ranks
+      context: deployment/nutrient-ranks
       dockerfile: Dockerfile
     container_name: mongo-container
     environment:
