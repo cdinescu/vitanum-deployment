@@ -1,0 +1,171 @@
+version: '2'
+services:
+
+  naming-server:
+    build:
+      context: eureka-service/
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - vitanum-network
+
+  config-server:
+    build:
+      context: config-server/
+      dockerfile: Dockerfile
+    ports:
+      - "8012:8012"
+    depends_on:
+      - naming-server
+      - zipkin-server
+    restart: always
+    networks:
+      - vitanum-network
+
+  food-service:
+    build:
+      context: food-service/
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - vitanum-network
+    depends_on:
+      - config-server
+      - naming-server
+      - rabbitmq
+    environment:
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+
+  diary-service:
+    build:
+      context: diary-service/
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - vitanum-network
+      - diary-network
+    depends_on:
+      - config-server
+      - mysql-diary
+      - naming-server
+      - rabbitmq
+    environment:
+      RDS_HOSTNAME: mysql-diary
+      RDS_PORT: 3306
+      RDS_DB_NAME: todos
+      RDS_USERNAME: todos-user
+      RDS_PASSWORD: dummytodos
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+
+  mysql-diary:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: dummypassword 
+      MYSQL_USER: todos-user
+      MYSQL_PASSWORD: dummytodos
+      MYSQL_DATABASE: todos
+    volumes:
+      - diary-mysql-database-data-volume:/var/lib/mysql
+    networks:
+      - diary-network  
+
+  gateway-service:
+    build:
+      context: gateway-service/
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    restart: always
+    networks:
+      - vitanum-network
+    depends_on:
+      - config-server
+      - naming-server
+      - rabbitmq
+    environment:
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+
+
+  ask-oracle-service:
+    build:
+      context: ask-oracle-service/
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - vitanum-network
+      - ask-oracle-network
+    depends_on:
+      - config-server
+      - mongo-database
+      - naming-server
+      - rabbitmq
+    environment:
+      RDS_HOSTNAME: mongo-database
+      RDS_PORT: 27017
+      RDS_DB_NAME: nutrient-ranks
+      RDS_USERNAME: root
+      RDS_PASSWORD: rootpassword
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+
+  mongo-database:
+    build:
+      context: nutrient-ranks
+      dockerfile: Dockerfile
+    container_name: mongo-container
+    environment:
+      - MONGO_INITDB_DATABASE=nutrient-ranks
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=rootpassword
+    volumes:
+      - mongodb_data_container:/data/db
+        #command:
+        #- /app/data/mongo-import.sh
+    ports:
+      - '27017:27017'
+    restart: always
+    networks:
+      - ask-oracle-network
+        #mongo-seed:
+        #links:
+        #- mongo-database
+        #command:
+        #- /app/data/mongo-import.sh
+
+  zipkin-server:
+    image: openzipkin/zipkin
+    #container_name: zipkin
+    environment:
+      STORAGE_TYPE: mem
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+    ports:
+      - "9411:9411"
+    restart: always
+    depends_on:
+      - rabbitmq
+    networks:
+      - vitanum-network
+
+  rabbitmq:
+    image: rabbitmq:3.5.3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: always
+    networks:
+      - vitanum-network
+
+# Networks to be created to facilitate communication between containers
+networks:
+  vitanum-network:
+  diary-network:
+  ask-oracle-network:
+
+volumes:
+  diary-mysql-database-data-volume:
+  mongodb_data_container:
