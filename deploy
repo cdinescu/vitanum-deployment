@@ -30,7 +30,7 @@ git clone ${GIT_URL}/ask-oracle-service.git
 git clone ${GIT_URL}/central-config.git
 git clone ${GIT_URL}/nutrient-ranks.git
 
-echo -e  "\n\n"
+echo -e "\n\n"
 
 # Folder name array for the projects which need to be built (those with source code)
 declare -a services_to_build=(eureka-service config-server food-service gateway-service diary-service ask-oracle-service)
