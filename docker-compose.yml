@@ -48,29 +48,30 @@ services:
       - diary-network
     depends_on:
       - config-server
-      - mongodb-diary
+      - mysql-diary
       - naming-server
       - rabbitmq
     environment:
-      RDS_HOSTNAME: mongodb-diary
-      RDS_PORT: 27018 
-      RDS_DB_NAME: diary-db
-      RDS_USERNAME: root
-      RDS_PASSWORD: rootpassword
+      RDS_HOSTNAME: mysql-diary
+      RDS_PORT: 3306
+      RDS_DB_NAME: todos
+      RDS_USERNAME: todos-user
+      RDS_PASSWORD: dummytodos
       RABBIT_URI: amqp://guest:guest@rabbitmq:5672
 
-  mongodb-diary:
-    image: mongo:latest
+  mysql-diary:
+    image: mysql:5.7
     ports:
-      - '27018:27018'
+      - "3306:3306"
     restart: always
-    container_name: diary-mongo-container
     environment:
-      - MONGO_INITDB_DATABASE=diary-db
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=rootpassword
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: dummypassword 
+      MYSQL_USER: todos-user
+      MYSQL_PASSWORD: dummytodos
+      MYSQL_DATABASE: todos
     volumes:
-      - diary-mongodb-database-data-volume:/data/db
+      - diary-mysql-database-data-volume:/var/lib/mysql
     networks:
       - diary-network  
 
@@ -106,7 +107,7 @@ services:
       - rabbitmq
     environment:
       RDS_HOSTNAME: mongo-database
-      RDS_PORT: 27017 
+      RDS_PORT: 27017
       RDS_DB_NAME: nutrient-ranks
       RDS_USERNAME: root
       RDS_PASSWORD: rootpassword
