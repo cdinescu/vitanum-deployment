@@ -30,10 +30,10 @@ test_NutrientFound() {
 
   if [[ -z "$HTTP_BODY" ]]
   then
-    echo "Failed: HTTP body is empty"
+    echo "[test_NutrientFound] Failed: HTTP body is empty"
     exit 1
   else
-    echo -e "Success: HTTP body is not empty:\n"
+    echo -e "[test_NutrientFound] Success: HTTP body is not empty:\n"
     echo "${HTTP_BODY}" | jq
   fi
 }
@@ -54,9 +54,9 @@ test_NutrientNotFound() {
 
   # example using the status
   if [ $HTTP_STATUS -eq 404  ]; then
-    echo "Success: HTTP_STATUS is 404"
+    echo "[test_NutrientNotFound] Success: HTTP_STATUS is 404"
   else
-    echo "Failed: [HTTP status: $HTTP_STATUS]"
+    echo "[test_NutrientNotFound] Failed: [HTTP status: $HTTP_STATUS]"
     exit 1
   fi
 }

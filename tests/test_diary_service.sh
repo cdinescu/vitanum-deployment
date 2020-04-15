@@ -53,10 +53,10 @@ check_status() {
   EXPECTED_STATUS=$2
 
   if [[ ! "$HTTP_STATUS" -eq "${EXPECTED_STATUS}"  ]]; then
-    echo "******************************* Failed: [HTTP status: $HTTP_STATUS]"
+    echo "[test_GetDiaryEntries] Failed: [HTTP status: $HTTP_STATUS]"
     exit 1
   else
-    echo "******************************* Success: HTTP_STATUS is "${EXPECTED_STATUS}""
+    echo "[test_GetDiaryEntries] Success: HTTP_STATUS is "${EXPECTED_STATUS}""
   fi
 }
 
@@ -64,7 +64,7 @@ test_GetDiaryEntries() {
   log
 
   # Insert test data
-  diary_date="2020-04-14"
+  diary_date="2020-04-15"
   HTTP_RESPONSE=$(insertDiaryEntry ${diary_date})
   DIARY_ID=$(echo "${HTTP_RESPONSE}" | grep --col id |  tr -d " \t\n\r," | awk -F ':' '{print $2}')
   HTTP_BODY=$(echo $HTTP_RESPONSE | sed -e 's/HTTPSTATUS\:.*//g')

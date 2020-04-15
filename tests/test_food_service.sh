@@ -31,10 +31,10 @@ test_FoodFound() {
 
   if [[ -z "$HTTP_BODY" ]]
   then
-    echo "Failed: HTTP body is empty"
+    echo "[test_FoodFound] Failed: HTTP body is empty"
     exit 1
   else
-    echo -e "Success: HTTP body is not empty:\n"
+    echo -e "[test_FoodFound] Success: HTTP body is not empty:\n"
     echo ${HTTP_BODY} | jq
   fi
 }
@@ -54,10 +54,10 @@ test_FoodNotFound() {
 
   # example using the status
   if [ ! $HTTP_STATUS -eq 404  ]; then
-    echo "Failed: [HTTP status: $HTTP_STATUS]"
+    echo "[test_FoodNotFound] Failed: [HTTP status: $HTTP_STATUS]"
     exit 1
   else
-    echo "Success: HTTP_STATUS is 404"
+    echo "[test_FoodNotFound] Success: HTTP_STATUS is 404"
   fi
 }
 
@@ -77,18 +77,18 @@ test_FoodReport_ValidFoodId() {
 
   # example using the status
   if [ ! $HTTP_STATUS -eq 200  ]; then
-    echo "Failed: [HTTP status: $HTTP_STATUS]"
+    echo "[test_FoodReport_ValidFoodId] Failed: [HTTP status: $HTTP_STATUS]"
     exit 1
   else
-    echo "Success: HTTP_STATUS is 200"
+    echo "[test_FoodReport_ValidFoodId] Success: HTTP_STATUS is 200"
   fi
 
   if [[ -z "$HTTP_BODY" ]]
   then
-    echo "Failed: HTTP body is empty"
+    echo "[test_FoodReport_ValidFoodId] Failed: HTTP body is empty"
     exit 1
   else
-    echo -e "Success: HTTP body is not empty:\n"
+    echo -e "[test_FoodReport_ValidFoodId] Success: HTTP body is not empty:\n"
     echo ${HTTP_BODY} | jq
   fi
 }
@@ -109,10 +109,10 @@ test_FoodReport_InvalidFoodId() {
 
   # example using the status
   if [ ! $HTTP_STATUS -eq 404  ]; then
-    echo "Failed: [HTTP status: $HTTP_STATUS]"
+    echo "[test_FoodReport_InvalidFoodId] Failed: [HTTP status: $HTTP_STATUS]"
     exit 1
   else
-    echo "Success: HTTP_STATUS is 404"
+    echo "[test_FoodReport_InvalidFoodId] Success: HTTP_STATUS is 404"
   fi
 }
 
