@@ -33,7 +33,8 @@ test_NutrientFound() {
     echo "Failed: HTTP body is empty"
     exit 1
   else
-    echo -e "Success: HTTP body is not empty:\n ${HTTP_BODY}"
+    echo -e "Success: HTTP body is not empty:\n"
+    echo "${HTTP_BODY}" | jq
   fi
 }
 

@@ -8,6 +8,9 @@ echo "Running food-service tests....."
 echo "Running ask-oracle-service tests....."
 ./test_askoracle_service.sh
 
+echo "Running diary-service tests....."
+./test_diary_service.sh
+
 echo -e "\n==================================\n"
 
 if [[ ${?} -eq 0 ]]; then

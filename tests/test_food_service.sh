@@ -34,7 +34,8 @@ test_FoodFound() {
     echo "Failed: HTTP body is empty"
     exit 1
   else
-    echo -e "Success: HTTP body is not empty:\n ${HTTP_BODY}"
+    echo -e "Success: HTTP body is not empty:\n"
+    echo ${HTTP_BODY} | jq
   fi
 }
 
@@ -87,7 +88,8 @@ test_FoodReport_ValidFoodId() {
     echo "Failed: HTTP body is empty"
     exit 1
   else
-    echo -e "Success: HTTP body is not empty:\n ${HTTP_BODY}"
+    echo -e "Success: HTTP body is not empty:\n"
+    echo ${HTTP_BODY} | jq
   fi
 }
 
