@@ -8,7 +8,7 @@ log() {
 
 getDiaryEntry() {
   diary_date=$1
-  URL="${BASE_URL}/search/findByDate?date=${diary_date}"
+  URL="${BASE_URL}/search/findByUsernameAndDate?date=${diary_date}&username=cristina"
 
   HTTP_STATUS=$(curl -w "%{http_code}" \
                      --silent --output /dev/null \
@@ -27,6 +27,7 @@ insertDiaryEntry() {
     "amount": 100,
     "unit": "g",
     "calories" : "50",
+    "username" : "cristina",
     "date": "'${diary_date}'"
     }'
 
