@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: config-server-service
+  name: config-server
 spec:
   ports:
     - targetPort: 8012

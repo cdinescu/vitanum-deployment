@@ -17,3 +17,14 @@ spec:
       containers:
         - name: gateway-container
           image: villanelle/vitanum-gateway-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 8082
+      port: 8082
+      nodePort: 30082

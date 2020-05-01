@@ -9,7 +9,7 @@ spec:
       app: eureka
   template:
     metadata:
-      name: naming-server
+      name: eureka1
       labels:
         app: eureka
         type: backend
@@ -17,3 +17,15 @@ spec:
       containers:
         - name: eureka-container
           image: villanelle/vitanum-naming-server
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: naming-server
+spec:
+  ports:
+    - targetPort: 8761
+      port: 8761
+  selector:
+    app: eureka
+
