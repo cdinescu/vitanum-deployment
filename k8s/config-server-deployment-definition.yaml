@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: config-server
+  template:
+    metadata:
+      name: config-server
+      labels:
+        app: config-server
+        type: backend
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: config-server
+          image: villanelle/vitanum-config-server
+          ports:
+            - containerPort: 8012
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server-service
+spec:
+  ports:
+    - targetPort: 8012
+      port: 8012
+  selector:
+    app: config-server
