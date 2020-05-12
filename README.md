@@ -19,6 +19,7 @@ Note: some repos are private
 
 <hr>
 Technology stack:
+
 - Spring Framework
 - Spring Cloud
 - Spring Security (the user authentication and authorization are currently being developed)
@@ -32,6 +33,7 @@ Technology stack:
 
 <hr>
 Dockerhub repositories:
+
 - https://hub.docker.com/repository/docker/villanelle/vitanum-naming-server
 - https://hub.docker.com/repository/docker/villanelle/vitanum-config-server
 - https://hub.docker.com/repository/docker/villanelle/vitanum-gateway-service
