@@ -15,7 +15,9 @@ See the README files of the involved projects:
 - https://github.com/cdinescu/config-server
 - https://github.com/cdinescu/ask-oracle-service
 
-Note: some repos are priva
+Note: some repos are private
+
+<hr>
 Technology stack:
 - Spring Framework
 - Spring Cloud
@@ -25,4 +27,14 @@ Technology stack:
 - Angular
 - Docker (thus is the current deployment)
 - Kubernetes (the migration from docker is currently being developed)
+- Travis CI
+- Gradle
+
+Dockerhub repositories:
+- https://hub.docker.com/repository/docker/villanelle/vitanum-naming-server
+- https://hub.docker.com/repository/docker/villanelle/vitanum-config-server
+- https://hub.docker.com/repository/docker/villanelle/vitanum-gateway-service
+- https://hub.docker.com/repository/docker/villanelle/vitanum-food-service
+- https://hub.docker.com/repository/docker/villanelle/vitanum-ask-oracle-service
+- https://hub.docker.com/repository/docker/villanelle/vitanum-diary
 
