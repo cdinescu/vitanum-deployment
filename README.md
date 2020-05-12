@@ -30,6 +30,7 @@ Technology stack:
 - Travis CI
 - Gradle
 
+<hr>
 Dockerhub repositories:
 - https://hub.docker.com/repository/docker/villanelle/vitanum-naming-server
 - https://hub.docker.com/repository/docker/villanelle/vitanum-config-server
