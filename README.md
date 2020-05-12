@@ -26,8 +26,8 @@ Technology stack:
 - Spring Data Rest
 - Hibernate
 - Angular
-- Docker (thus is the current deployment)
-- Kubernetes (the migration from docker is currently being developed)
+- Docker (this is the current deployment)
+- Kubernetes (the migration from Docker to Kubernetes is currently being developed)
 - Travis CI
 - Gradle
 
