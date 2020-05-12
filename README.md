@@ -15,7 +15,7 @@ See the README files of the involved projects:
 - https://github.com/cdinescu/config-server
 - https://github.com/cdinescu/ask-oracle-service
 
-Note: some repos are private (due to USDA API key being present in the configuratio files)
+Note: some repos are private (due to USDA API key being present in the configuration files)
 
 <hr>
 Technology stack:
