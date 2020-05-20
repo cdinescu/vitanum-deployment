@@ -23,7 +23,6 @@ cd $DEPLOY_FOLDER
 git clone ${GIT_URL}/eureka-service.git
 git clone ${GIT_URL}/config-server.git
 git clone ${GIT_URL}/food-service.git
-git clone ${GIT_URL}/users-service.git
 git clone ${GIT_URL}/gateway-service.git
 git clone ${GIT_URL}/diary-service.git
 git clone ${GIT_URL}/ask-oracle-service.git
