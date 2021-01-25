@@ -90,7 +90,9 @@ services:
       - rabbitmq
     environment:
       RABBIT_URI: amqp://guest:guest@rabbitmq:5672
-
+      ISSUER_URI: https://dev-961527.okta.com/oauth2/default
+      CLIENT_ID: 0oacgm61gdB6jw6MM4x6
+      CLIENT_SECRET: 4mQ8OYwMAMC08xcM9CxybXDQB6cRqqU9K0OUUZUY
 
   ask-oracle-service:
     build:
