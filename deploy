@@ -3,12 +3,20 @@
 DEPLOY_FOLDER=deployment
 GIT_URL="git@github.com:cdinescu"
 
+if [ "$#" -eq 1 ]; then
+    BRANCH=$1
+fi
+
 # Project build function
 
 buildProject() {
   project_folder=$1
   echo -e "\n Building: $project_fold.........................................\n"
   cd ${project_folder}
+  if [ ! -z {$BRANCH} ]; then
+    echo "Checking out branch '${BRANCH}'...."
+    git checkout ${BRANCH}
+  fi
   # Generate the build folder, which later are used by the projects' Dockerfile when creating the image
   gradle bootJar
   # Go back
