@@ -9,7 +9,6 @@ See the README files of the involved projects:
 - https://github.com/cdinescu/vitanum-frontend
 - https://github.com/cdinescu/gateway-service
 - https://github.com/cdinescu/eureka-service
-- https://github.com/cdinescu/users-service
 - https://github.com/cdinescu/diary-service
 - https://github.com/cdinescu/food-service
 - https://github.com/cdinescu/config-server
@@ -22,11 +21,11 @@ Technology stack:
 
 - Spring Framework
 - Spring Cloud
-- Spring Security (the user authentication and authorization are currently being developed)
+- Spring Security
 - Spring Data Rest
 - Hibernate
 - Angular
-- Docker (this is the current deployment)
+- Docker
 - Kubernetes (the migration from Docker to Kubernetes is currently being developed)
 - Travis CI
 - Gradle
