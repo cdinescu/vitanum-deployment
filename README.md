@@ -40,3 +40,8 @@ Dockerhub repositories:
 - https://hub.docker.com/repository/docker/villanelle/vitanum-ask-oracle-service
 - https://hub.docker.com/repository/docker/villanelle/vitanum-diary
 
+<hr>
+Architecture
+
+![alt text](https://github.com/cdinescu/vitanum-deployment/blob/master/vitanum_architecture.png)
+
